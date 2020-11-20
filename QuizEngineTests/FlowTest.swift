@@ -80,8 +80,12 @@ class FlowTest: XCTestCase {
 	
 	class RouterSpy: Router {
 		var routerQuestions: [String] = []
+		var routedResult: [String: String]? = nil
 		var answerCallback: ( (String) -> Void) = {_ in}
 		
+		func routeTo(result: [String : String]) {
+			routedResult = result
+		}
 		func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
 			routerQuestions.append(question)
 			self.answerCallback = answerCallback
