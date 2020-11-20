@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F7F1AEB525675C1F004A3154 /* QuizEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F1AEAB25675C1F004A3154 /* QuizEngine.framework */; };
-		F7F1AEBA25675C1F004A3154 /* QuizEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F1AEB925675C1F004A3154 /* QuizEngineTests.swift */; };
-		F7F1AEBC25675C1F004A3154 /* QuizEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = F7F1AEAE25675C1F004A3154 /* QuizEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7F1AECC25675D49004A3154 /* FlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F1AECB25675D49004A3154 /* FlowTest.swift */; };
+		F7F1AED025675EAE004A3154 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F1AECF25675EAE004A3154 /* Flow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,11 +24,11 @@
 
 /* Begin PBXFileReference section */
 		F7F1AEAB25675C1F004A3154 /* QuizEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuizEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7F1AEAE25675C1F004A3154 /* QuizEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuizEngine.h; sourceTree = "<group>"; };
 		F7F1AEAF25675C1F004A3154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7F1AEB425675C1F004A3154 /* QuizEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7F1AEB925675C1F004A3154 /* QuizEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizEngineTests.swift; sourceTree = "<group>"; };
 		F7F1AEBB25675C1F004A3154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7F1AECB25675D49004A3154 /* FlowTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTest.swift; sourceTree = "<group>"; };
+		F7F1AECF25675EAE004A3154 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +71,8 @@
 		F7F1AEAD25675C1F004A3154 /* QuizEngine */ = {
 			isa = PBXGroup;
 			children = (
-				F7F1AEAE25675C1F004A3154 /* QuizEngine.h */,
 				F7F1AEAF25675C1F004A3154 /* Info.plist */,
+				F7F1AECF25675EAE004A3154 /* Flow.swift */,
 			);
 			path = QuizEngine;
 			sourceTree = "<group>";
@@ -80,8 +80,8 @@
 		F7F1AEB825675C1F004A3154 /* QuizEngineTests */ = {
 			isa = PBXGroup;
 			children = (
-				F7F1AEB925675C1F004A3154 /* QuizEngineTests.swift */,
 				F7F1AEBB25675C1F004A3154 /* Info.plist */,
+				F7F1AECB25675D49004A3154 /* FlowTest.swift */,
 			);
 			path = QuizEngineTests;
 			sourceTree = "<group>";
@@ -93,7 +93,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7F1AEBC25675C1F004A3154 /* QuizEngine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,9 +146,11 @@
 				TargetAttributes = {
 					F7F1AEAA25675C1F004A3154 = {
 						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
 					};
 					F7F1AEB325675C1F004A3154 = {
 						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
 					};
 				};
 			};
@@ -194,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7F1AED025675EAE004A3154 /* Flow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7F1AEBA25675C1F004A3154 /* QuizEngineTests.swift in Sources */,
+				F7F1AECC25675D49004A3154 /* FlowTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +342,7 @@
 		F7F1AEC025675C1F004A3154 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -356,6 +359,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.standardbank.QuizEngine;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -363,6 +367,7 @@
 		F7F1AEC125675C1F004A3154 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -386,6 +391,8 @@
 		F7F1AEC325675C1F004A3154 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = QuizEngineTests/Info.plist;
@@ -396,6 +403,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.standardbank.QuizEngineTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -403,6 +411,8 @@
 		F7F1AEC425675C1F004A3154 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = QuizEngineTests/Info.plist;
