@@ -9,41 +9,84 @@ import XCTest
 @testable import QuizEngine
 
 class FlowTest: XCTestCase {
+	let router = RouterSpy()
+	
 	func  test_start_withNoQuestions_doesNotRouteToQuestion() {
-		let router = RouterSpy()
-		let systemUndetTest = Flow(router: router, questions: [])
-	
-		systemUndetTest.start()
+		makeSystemUnderTest(questions: []).start()
 		
-		XCTAssertEqual(router.routerQuestionCount, 0)
-	}
-	
-	func  test_start_withQuestions_routesToQuestion() {
-		let router = RouterSpy()
-		let systemUndetTest = Flow(router: router, questions: ["Q1"])
-		
-		systemUndetTest.start()
-		
-		XCTAssertEqual(router.routerQuestionCount, 1)
+		XCTAssertTrue(router.routerQuestions.isEmpty)
 	}
 	
 	func  test_start_withQuestions_routesToCorretQuestion() {
-		let router = RouterSpy()
-		let systemUndetTest = Flow(router: router, questions: ["Q1"])
+		makeSystemUnderTest(questions: ["Q1"]).start()
+		
+		XCTAssertEqual(router.routerQuestions, ["Q1"])
+	}
+	
+	func  test_start_withQuestions_routesToCorretQuestion_2() {
+		makeSystemUnderTest(questions: ["Q2"]).start()
+		
+		XCTAssertEqual(router.routerQuestions, ["Q2"])
+	}
+	
+	func  test_start_withTwoQuestions_routesToFirstQuestion() {
+		makeSystemUnderTest(questions: ["Q1","Q2"]).start()
+		
+		XCTAssertEqual(router.routerQuestions, ["Q1"])
+	}
+	
+	func  test_starTwice_withTwoQuestions_routesToFirstQuestionTwice() {
+		let systemUndetTest = makeSystemUnderTest(questions: ["Q1","Q2"])
 		
 		systemUndetTest.start()
+		systemUndetTest.start()
 		
-		XCTAssertEqual(router.routerQuestion, "Q1")
+		XCTAssertEqual(router.routerQuestions, ["Q1","Q1"])
+	}
+	
+	func  test_startAndAnsweerFirstQuestion_withTwoQuestions_routesToSecondQuestion() {
+		let systemUndetTest = makeSystemUnderTest(questions: ["Q1","Q2"])
+		
+		systemUndetTest.start()
+		router.answerCallback("A1")
+		
+		XCTAssertEqual(router.routerQuestions, ["Q1","Q2"])
+	}
+	
+	func  test_startAndAnsweerFirstAndSeconQuestion_withThreeQuestions_routesToSecondandThirdQuestion() {
+		let systemUndetTest = makeSystemUnderTest(questions: ["Q1","Q2","Q3"])
+		
+		systemUndetTest.start()
+		router.answerCallback("A1")
+		router.answerCallback("A2")
+		
+		XCTAssertEqual(router.routerQuestions, ["Q1","Q2","Q3"])
+	}
+	
+	func  test_startAndAnsweerFirstQuestion_withOneQuestions_doesNOtRouteToAnotherQuestion() {
+		let systemUndetTest = makeSystemUnderTest(questions: ["Q1"])
+		
+		systemUndetTest.start()
+		router.answerCallback("A1")
+		
+		XCTAssertEqual(router.routerQuestions, ["Q1"])
+	}
+	
+	// MARK: Helpers
+	
+	func makeSystemUnderTest(questions: [String]) -> Flow {
+		return Flow(router: router, questions: questions)
+	}
+	
+	class RouterSpy: Router {
+		var routerQuestions: [String] = []
+		var answerCallback: ( (String) -> Void) = {_ in}
+		
+		func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
+			routerQuestions.append(question)
+			self.answerCallback = answerCallback
+		}
 	}
 }
 
-class RouterSpy: Router {
-	var routerQuestionCount: Int = 0
-	var routerQuestion: String? = nil
-	
-	
-	func routeTo(question: String) {
-		routerQuestionCount += 1
-		routerQuestion = question
-	}
-}
+
